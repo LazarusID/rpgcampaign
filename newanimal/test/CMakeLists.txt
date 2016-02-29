@@ -1,0 +1,23 @@
+
+SET(TEST_SRC
+        testLinkFarm.cpp
+        )
+
+SET(UNIT_UNDER_TEST_SRC
+        ../LinkFarm.cpp ../LinkFarm.h
+		../Link.cpp ../Link.h
+		)
+
+SET(TEST_NAME ${PROJECT_NAME}-test)
+ADD_EXECUTABLE(${TEST_NAME}
+	${TEST_SRC}
+	${UNIT_UNDER_TEST_SRC}
+	)
+
+TARGET_LINK_LIBRARIES(${TEST_NAME}
+	gtest
+	gtest_main
+	)
+
+TARGET_COMPILE_FEATURES(${TEST_NAME} PUBLIC cxx_override)
+ADD_TEST(UnitTest ${TEST_NAME})
