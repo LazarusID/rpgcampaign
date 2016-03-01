@@ -6,12 +6,13 @@ SET(TEST_SRC
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h
 		../Link.cpp ../Link.h
-		)
+        ../SiteRequest.cpp ../SiteRequest.h)
 
 SET(TEST_NAME ${PROJECT_NAME}-test)
 ADD_EXECUTABLE(${TEST_NAME}
 	${TEST_SRC}
 	${UNIT_UNDER_TEST_SRC}
+    ${JSON_SRC}
 	)
 SET_PROPERTY(TARGET ${TEST_NAME} PROPERTY CXX_STANDARD 14)
 TARGET_LINK_LIBRARIES(${TEST_NAME}
