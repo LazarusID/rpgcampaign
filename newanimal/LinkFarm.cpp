@@ -34,8 +34,7 @@ unique_ptr<Link> LinkFarm::makeLink(const string &filename) {
     string destination = build_destination_path(filename);
     string source = build_source_path(filename);
 
-    unique_ptr<Link> newlink(new Link(source, destination));
-    return newlink;
+    return make_unique<Link>(source, destination);
 }
 
 string LinkFarm::build_destination_path(const string right) const {

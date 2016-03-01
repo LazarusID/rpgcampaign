@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 PROJECT(newanimal)
 
+
 add_subdirectory(googletest)
 add_subdirectory(test)
 
@@ -11,3 +12,4 @@ add_executable(${PROJECT_NAME}
         ${APP_SOURCE}
         )
 
+SET_PROPERTY(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
