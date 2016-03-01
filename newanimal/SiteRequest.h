@@ -6,7 +6,7 @@
 #define NEWANIMAL_SITEREQUEST_H
 
 #include <string>
-#include <json/json.h>
+#include "json/json.h"
 
 using namespace std;
 
@@ -30,5 +30,7 @@ public:
     void setSitename(const string &sitename);
 };
 
+Json::Value& operator<<(Json::Value&, SiteRequest&);
+Json::Value& operator>>(Json::Value&, SiteRequest&);
 
 #endif //NEWANIMAL_SITEREQUEST_H

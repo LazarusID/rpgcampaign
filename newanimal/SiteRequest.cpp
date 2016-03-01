@@ -34,3 +34,31 @@ SiteRequest::SiteRequest()  = default;
 SiteRequest::SiteRequest(string username, string email, string sitename) :
     username(username), email(email), sitename(sitename)
 {};
+
+
+// Input and output operators
+
+Json::Value& operator<<(Json::Value& json, SiteRequest& sr)
+{
+    json["username"] = sr.getUsername();
+    json["email"] = sr.getEmail();
+    json["sitename"] = sr.getSitename();
+    return json;
+}
+
+Json::Value& operator>>(Json::Value& json, SiteRequest& sr)
+{
+    string email;
+    string sitename;
+    string username;
+
+    email = json["email"].asString();
+    sitename = json["sitename"].asString();
+    username = json["username"].asString();
+
+    sr.setEmail(email);
+    sr.setUsername(username);
+    sr.setSitename(sitename);
+
+    return json;
+}

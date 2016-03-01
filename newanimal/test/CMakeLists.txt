@@ -1,7 +1,7 @@
 
 SET(TEST_SRC
         testLinkFarm.cpp
-        )
+		testSiteRequest.cpp)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h
