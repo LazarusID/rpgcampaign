@@ -5,8 +5,11 @@ PROJECT(newanimal)
 add_subdirectory(googletest)
 add_subdirectory(test)
 
+
+
+
 set(APP_SOURCE
-        Link.cpp Link.h LinkFarm.cpp LinkFarm.h)
+        Link.cpp Link.h LinkFarm.cpp LinkFarm.h FileFolder.cpp FileFolder.h Directory.cpp Directory.h)
 
 add_executable(${PROJECT_NAME}
         ${APP_SOURCE}
