@@ -17,6 +17,8 @@ public:
     MOCK_METHOD1(OpenDir, void(const char*));
     MOCK_METHOD0(readdir, struct dirent*());
     MOCK_METHOD1(is_regular_file, bool(const char*));
+    MOCK_METHOD1(is_directory, bool(const char*));
+    MOCK_METHOD1(is_hidden_file, bool(const char*));
 };
 
 
@@ -48,7 +50,7 @@ public:
         ON_CALL(directory, is_regular_file(StrEq(HIDDEN_FILE)))
                 .WillByDefault(Return(true));
         ON_CALL(directory, is_regular_file(StrEq(DIRECTORY_1)))
-                .WillByDefault(Return(true));
+                .WillByDefault(Return(false));
 
         strcpy(ent_file_1.d_name, FILE_1);
         strcpy(ent_file_2.d_name, FILE_2);
@@ -83,11 +85,51 @@ TEST_F(testFileFolder, files_withOneRegularFile_willPutFileInList)
 {
     EXPECT_CALL(directory, OpenDir(_));
     EXPECT_CALL(directory, readdir())
-                .WillOnce(Return(&ent_file_1));
+        .WillOnce(Return(&ent_file_1))
+        .WillOnce(Return(nullptr));
 
     folder->Load();
 
     ASSERT_THAT(folder->files.size(), Eq(1));
     ASSERT_THAT(folder->files[0], StrEq(FILE_1));
 
+}
+
+TEST_F(testFileFolder, files_withTwoRegularFiles_willPutBothFilesInList)
+{
+    EXPECT_CALL(directory, OpenDir(_));
+    EXPECT_CALL(directory, readdir())
+            .WillOnce(Return(&ent_file_1))
+            .WillOnce(Return(&ent_file_2))
+            .WillOnce(Return(nullptr));
+
+    folder->Load();
+
+    ASSERT_THAT(folder->files.size(), Eq(2));
+    ASSERT_THAT(folder->files, Contains(StrEq(FILE_1)));
+    ASSERT_THAT(folder->files, Contains(StrEq(FILE_2)));
+}
+
+TEST_F(testFileFolder, file_withHiddenFile_willLeaveFileListEmpty)
+{
+    EXPECT_CALL(directory, OpenDir(_));
+    EXPECT_CALL(directory, readdir())
+            .WillOnce(Return(&ent_hidden_file))
+            .WillOnce(Return(nullptr));
+
+    folder->Load();
+
+    ASSERT_THAT(folder->files.size(), Eq(0));
+}
+
+TEST_F(testFileFolder, file_withDirectory_willLeaveFileListEmpty)
+{
+    EXPECT_CALL(directory, OpenDir(_));
+    EXPECT_CALL(directory, readdir())
+            .WillOnce(Return(&ent_directory_1))
+            .WillOnce(Return(nullptr));
+
+    folder->Load();
+
+    ASSERT_THAT(folder->files.size(), Eq(0));
 }

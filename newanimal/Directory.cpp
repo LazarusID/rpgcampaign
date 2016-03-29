@@ -22,9 +22,7 @@ struct dirent *Directory::readdir() {
 bool Directory::is_regular_file(const char *relativepath) {
     struct stat sb;
 
-    string fullpath = srcpath;
-    fullpath += '/';
-    fullpath += relativepath;
+    string fullpath = make_fullpath(relativepath);
 
     if (stat(fullpath.c_str(), &sb)) {
         // Don't know what it is, but safe bet we can't see it as a regular file
@@ -32,4 +30,33 @@ bool Directory::is_regular_file(const char *relativepath) {
     }
 
     return S_ISREG(sb.st_mode);
+}
+
+bool Directory::is_directory(const char *relativepath) {
+    struct stat sb;
+
+    string fullpath = make_fullpath(relativepath);
+    if (stat(fullpath.c_str(), &sb)) {
+        // Don't know what it is, but safe bet we can't see it as a directory
+        return false;
+    }
+
+    return S_ISDIR(sb.st_mode);
+
+}
+
+bool Directory::is_hidden_file(const char *relativepath) {
+    if (nullptr == relativepath) {
+        return false;
+    }
+    return '.' == relativepath[0];
+}
+
+string Directory::make_fullpath(const char *relativepath) {
+
+    string fullpath = srcpath;
+    fullpath += '/';
+    fullpath += relativepath;
+
+    return fullpath;
 }

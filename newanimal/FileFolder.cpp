@@ -27,8 +27,15 @@ void FileFolder::Load() {
     // Do the thing to load the files
     directory->OpenDir(path.c_str());
 
-    struct dirent *filename = directory->readdir();
-    files.push_back(filename->d_name);
+    struct dirent *filename = nullptr;
+    do {
+        filename = directory->readdir();
+        if (nullptr == filename) continue;
+        if ('.' == filename->d_name[0]) continue;
+        if (directory->is_regular_file(filename->d_name)) {
+            files.push_back(filename->d_name);
+        }
+    } while(NULL != filename);
 }
 
 void FileFolder::init() {
