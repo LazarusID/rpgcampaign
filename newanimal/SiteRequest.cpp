@@ -31,6 +31,9 @@ void SiteRequest::setSitename(const string &sitename) {
 
 SiteRequest::SiteRequest()  = default;
 
+SiteRequest::SiteRequest(const SiteRequest& rhs) : username(rhs.username), email(rhs.email), sitename(rhs.sitename) {
+}
+
 SiteRequest::SiteRequest(string username, string email, string sitename) :
     username(username), email(email), sitename(sitename)
 {};

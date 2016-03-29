@@ -4,13 +4,16 @@ include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/googletest/googlemock/include)
 SET(TEST_SRC
         testLinkFarm.cpp
 		testFileFolder.cpp
-		testSiteRequest.cpp)
+		testSiteRequest.cpp
+		testHostname.cpp)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h
 		../Link.cpp ../Link.h
-		../FileFolder.cpp ../FileFolder.h ../Directory.cpp ../Directory.h
-        ../SiteRequest.cpp ../SiteRequest.h)
+		../FileFolder.cpp ../FileFolder.h
+		../Directory.cpp ../Directory.h
+        ../SiteRequest.cpp ../SiteRequest.h
+		../Hostname.cpp ../Hostname.h)
 
 SET(TEST_NAME ${PROJECT_NAME}-test)
 ADD_EXECUTABLE(${TEST_NAME}

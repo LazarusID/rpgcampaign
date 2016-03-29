@@ -18,6 +18,7 @@ private:
 public:
 
     SiteRequest();
+    SiteRequest(const SiteRequest&);
     SiteRequest(string username, string email, string sitename);
 
     const string &getUsername() const;

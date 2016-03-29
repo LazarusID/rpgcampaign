@@ -16,7 +16,7 @@ add_subdirectory(test)
 set(APP_SOURCE
         Link.cpp Link.h LinkFarm.cpp LinkFarm.h FileFolder.cpp FileFolder.h Directory.cpp Directory.h
         ${JSON_SRC}
-        SiteRequest.cpp SiteRequest.h)
+        SiteRequest.cpp SiteRequest.h Hostname.cpp Hostname.h)
 
 add_executable(${PROJECT_NAME}
         ${APP_SOURCE}
