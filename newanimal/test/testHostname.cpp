@@ -33,3 +33,13 @@ TEST_F(testHostname, getName_withConsecutiveNotAlphaNumeric_replacesWithSingleDa
 {
     ASSERT_THAT(sut.make_hostname("Awesome!$ite"), StrEq("awesome-ite"));
 }
+
+TEST_F(testHostname, getName_withLeadingNonAlphaNumeric_dropsLeadingCharacter)
+{
+    ASSERT_THAT(sut.make_hostname("$site"), StrEq("site"));
+}
+
+TEST_F(testHostname, getName_withOnlyNonAlphNum_returnsEmptyString)
+{
+    ASSERT_THAT(sut.make_hostname("$$$"), StrEq(""));
+}

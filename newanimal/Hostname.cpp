@@ -9,7 +9,7 @@
 string Hostname::make_hostname(string sitename) {
 
     string hostname;
-    bool lastreplaced = false;
+    bool lastreplaced = true; // Prevents starting with a dash
     for(char p : sitename) {
         if (!isalnum(p)) {
             if (!lastreplaced) {
