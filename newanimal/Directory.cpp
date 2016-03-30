@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 
 #include <string>
+#include <unistd.h>
 
 #include "Directory.h"
 
@@ -59,4 +60,8 @@ string Directory::make_fullpath(const char *relativepath) {
     fullpath += relativepath;
 
     return fullpath;
+}
+
+void Directory::link(const char *src, const char *dst) {
+    ::link(src, dst);
 }
