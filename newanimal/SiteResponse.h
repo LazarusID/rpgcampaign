@@ -20,7 +20,6 @@ public:
     string error_message;
 };
 
-//Json::Value& operator<<(Json::Value&, SiteResponse&);
-//Json::Value& operator>>(Json::Value&, SiteResponse&);
+Json::Value& operator<<(Json::Value&, SiteResponse&);
 
 #endif //NEWANIMAL_SITERESPONSE_H

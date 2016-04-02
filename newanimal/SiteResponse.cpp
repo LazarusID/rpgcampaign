@@ -12,3 +12,12 @@ SiteResponse::SiteResponse() {
 SiteResponse::SiteResponse(const SiteResponse &rhs) : error_message(rhs.error_message), hostname(rhs.hostname){
 
 }
+
+Json::Value& operator<<(Json::Value& out, SiteResponse& response)
+{
+    out["hostname"] = response.hostname;
+    if ("" != response.error_message) {
+        out["error"] = response.error_message;
+    }
+    return out;
+}
