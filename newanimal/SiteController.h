@@ -10,7 +10,14 @@
 
 class SiteController {
 public:
-
+    // Load config
+    // Validate site name
+    // Create site folder
+    // Unzip template
+    // Template Farm
+    // CSS Farm
+    // ownership and permissions
+    // user setup
 };
 
 

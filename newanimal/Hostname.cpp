@@ -11,6 +11,9 @@ string Hostname::make_hostname(string sitename) {
     string hostname;
     bool lastreplaced = true; // Prevents starting with a dash
     for(char p : sitename) {
+        if (is_droppable(p)) {
+            continue;
+        }
         if (!isalnum(p)) {
             if (!lastreplaced) {
                 hostname += '-';
@@ -21,5 +24,19 @@ string Hostname::make_hostname(string sitename) {
             lastreplaced = false;
         }
     }
+    if ('-' == hostname[hostname.length() - 1]) {
+        hostname.erase(hostname.length() - 1, 1);
+    }
     return hostname;
+}
+
+bool Hostname::is_droppable(char c) {
+    switch(c) {
+        case '\'':
+        case '\"':
+        case '`':
+            return true;
+        default:
+            return false;
+    }
 }

@@ -5,7 +5,7 @@ SET(TEST_SRC
         testLinkFarm.cpp
 		testFileFolder.cpp
 		testSiteRequest.cpp
-		testHostname.cpp testSiteResponse.cpp)
+		testHostname.cpp testSiteResponse.cpp testConfig.cpp)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h
@@ -13,7 +13,7 @@ SET(UNIT_UNDER_TEST_SRC
 		../FileFolder.cpp ../FileFolder.h
 		../Directory.cpp ../Directory.h
         ../SiteRequest.cpp ../SiteRequest.h
-		../Hostname.cpp ../Hostname.h ../SiteController.cpp ../SiteController.h ../SiteResponse.cpp ../SiteResponse.h)
+		../Hostname.cpp ../Hostname.h ../SiteController.cpp ../SiteController.h ../SiteResponse.cpp ../SiteResponse.h ../Config.cpp ../Config.h)
 
 SET(TEST_NAME ${PROJECT_NAME}-test)
 ADD_EXECUTABLE(${TEST_NAME}

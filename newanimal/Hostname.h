@@ -12,6 +12,10 @@ using namespace std;
 class Hostname {
 public:
     string make_hostname(string sitename);
+
+private:
+    bool is_droppable(char);
+
 };
 
 

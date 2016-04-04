@@ -31,15 +31,25 @@ TEST_F(testHostname, getName_withNotAlphaNumeric_replacesWithDashes)
 
 TEST_F(testHostname, getName_withConsecutiveNotAlphaNumeric_replacesWithSingleDash)
 {
-    ASSERT_THAT(sut.make_hostname("Awesome!$ite"), StrEq("awesome-ite"));
+    ASSERT_THAT(sut.make_hostname("Awesome!+site"), StrEq("awesome-site"));
 }
 
 TEST_F(testHostname, getName_withLeadingNonAlphaNumeric_dropsLeadingCharacter)
 {
-    ASSERT_THAT(sut.make_hostname("$site"), StrEq("site"));
+    ASSERT_THAT(sut.make_hostname("@site"), StrEq("site"));
+}
+
+TEST_F(testHostname, getName_withTrailingNonAlphaNumeric_dropsTrailingCharacter)
+{
+    ASSERT_THAT(sut.make_hostname("site@"), StrEq("site"));
 }
 
 TEST_F(testHostname, getName_withOnlyNonAlphNum_returnsEmptyString)
 {
-    ASSERT_THAT(sut.make_hostname("$$$"), StrEq(""));
+    ASSERT_THAT(sut.make_hostname("###"), StrEq(""));
+}
+
+TEST_F(testHostname, getName_withDroppableCharacters_doesNotContainCharacters)
+{
+    ASSERT_THAT(sut.make_hostname("my'\"`site"), StrEq("mysite"));
 }
