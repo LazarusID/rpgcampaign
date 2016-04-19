@@ -29,3 +29,5 @@
 
 # IDE files
 .idea
+*.swp
+*build

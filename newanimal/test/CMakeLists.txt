@@ -2,10 +2,14 @@
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/googletest/googlemock/include)
 
 SET(TEST_SRC
+	testConfig.cpp
+	testExecutor.cpp
+	testFileFolder.cpp
+	testHostname.cpp 
         testLinkFarm.cpp
-		testFileFolder.cpp
-		testSiteRequest.cpp
-		testHostname.cpp testSiteResponse.cpp testConfig.cpp)
+	testSiteRequest.cpp
+	testSiteResponse.cpp 
+)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h
@@ -13,7 +17,7 @@ SET(UNIT_UNDER_TEST_SRC
 		../FileFolder.cpp ../FileFolder.h
 		../Directory.cpp ../Directory.h
         ../SiteRequest.cpp ../SiteRequest.h
-		../Hostname.cpp ../Hostname.h ../SiteController.cpp ../SiteController.h ../SiteResponse.cpp ../SiteResponse.h ../Config.cpp ../Config.h)
+		../Hostname.cpp ../Hostname.h ../SiteController.cpp ../SiteController.h ../SiteResponse.cpp ../SiteResponse.h ../Config.cpp ../Config.h ../Executor.cpp ../Executor.h MockSystem.h)
 
 SET(TEST_NAME ${PROJECT_NAME}-test)
 ADD_EXECUTABLE(${TEST_NAME}
@@ -30,3 +34,4 @@ TARGET_LINK_LIBRARIES(${TEST_NAME}
 
 TARGET_COMPILE_FEATURES(${TEST_NAME} PUBLIC cxx_override)
 ADD_TEST(UnitTest ${TEST_NAME})
+

@@ -16,10 +16,10 @@ add_subdirectory(test)
 set(APP_SOURCE
         Link.cpp Link.h LinkFarm.cpp LinkFarm.h FileFolder.cpp FileFolder.h Directory.cpp Directory.h
         ${JSON_SRC}
-        SiteRequest.cpp SiteRequest.h Hostname.cpp Hostname.h SiteController.cpp SiteController.h SiteResponse.cpp SiteResponse.h Config.cpp Config.h)
+        SiteRequest.cpp SiteRequest.h Hostname.cpp Hostname.h SiteController.cpp SiteController.h SiteResponse.cpp SiteResponse.h Config.cpp Config.h System.cpp System.h)
 
 add_executable(${PROJECT_NAME}
         ${APP_SOURCE}
         )
 
-SET_PROPERTY(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+SET_PROPERTY(GLOBAL PROPERTY CXX_STANDARD 14)
