@@ -27,10 +27,20 @@ int Executor::run(map<string, string>& parameters)
         cli[i] = strdup(command[i].c_str());
     }
 
-    sys->execvp(command[0].c_str(), cli);
+    pid_t pid = fork();
+    if (pid == 0) {
+        // We're in the child process
+        sys->execvp(command[0].c_str(), cli);
+    } else {
+        // We're waiting for our child, and probably late for work
+        int status;
+        waitpid(pid, &status, 0);
 
-    for(int i=0; i < command.size(); ++i) {
-        free(cli[i]);
+        for(int i=0; i < command.size(); ++i) {
+            free(cli[i]);
+        }
+        delete cli;
+
+        return status;
     }
-    delete cli;
 }
