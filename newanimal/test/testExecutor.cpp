@@ -43,5 +43,8 @@ TEST_F(testExecutor, run_withEmptyParameters_callsExecvpWithRawCli) {
 		);
 	sut->setCli(simplecli);
 	sut->run(params);
+
 	ASSERT_THAT(actualCli, NotNull());
+	ASSERT_THAT(actualCli[0], StrEq(SIMPLECOMMAND));
+	ASSERT_THAT(actualCli[1], IsNull());
 }
