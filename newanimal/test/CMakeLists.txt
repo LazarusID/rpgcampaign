@@ -3,7 +3,6 @@ include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/googletest/googlemock/include)
 
 SET(TEST_SRC
 	testConfig.cpp
-	testExecutor.cpp
 	testFileFolder.cpp
 	testHostname.cpp 
         testLinkFarm.cpp
@@ -21,8 +20,7 @@ SET(UNIT_UNDER_TEST_SRC
 	../SiteController.cpp ../SiteController.h 
 	../SiteResponse.cpp ../SiteResponse.h 
 	../System.cpp ../System.h
-	../Config.cpp ../Config.h 
-	../Executor.cpp ../Executor.h 
+	../Config.cpp ../Config.h
 	MockSystem.h
 )
 
