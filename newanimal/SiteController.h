@@ -10,13 +10,22 @@
 #include "SiteRequest.h"
 #include "SiteResponse.h"
 #include "Directory.h"
+#include "Directory.h"
+#include "System.h"
 
 class SiteController {
+private:
+    SystemInterface *sys;
+    DirectoryInterface *dir;
+
 public:
 
     Config conf;
     SiteResponse response;
     SiteRequest request;
+
+    SiteController();
+    SiteController(SystemInterface* injected_system, DirectoryInterface* injected_directory);
 
     // Load config
     void loadConfig();
