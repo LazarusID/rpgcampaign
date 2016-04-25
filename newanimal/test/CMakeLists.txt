@@ -7,8 +7,8 @@ SET(TEST_SRC
 	testHostname.cpp 
         testLinkFarm.cpp
 	testSiteRequest.cpp
-	testSiteResponse.cpp 
-)
+	testSiteResponse.cpp
+		testSiteController.cpp)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h

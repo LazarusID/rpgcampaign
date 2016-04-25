@@ -18,10 +18,12 @@ public:
     SiteResponse response;
     SiteRequest request;
 
-
-
     // Load config
+    void loadConfig();
+
     // Validate site name
+    void generateResponse();
+
     // Create site folder
     // Unzip template
     // Template Farm

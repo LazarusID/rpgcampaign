@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Config {
 public:
     string domain;
     string farmpath;
+
 };
 
 istream& operator>>(istream& in, Config& conf);
