@@ -19,7 +19,6 @@ SiteController::SiteController(SystemInterface *injected_system, DirectoryInterf
 }
 
 void SiteController::loadConfig() {
-    // Do your load thang
     ifstream cf("newanimal.json");
     cf >> conf;
     cf.close();
