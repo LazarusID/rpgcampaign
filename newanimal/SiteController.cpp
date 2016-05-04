@@ -29,10 +29,20 @@ void SiteController::generateResponse() {
 
     string dirname = hn.make_hostname(request.getSitename());
 
-    if (dir->is_directory(dirname.c_str())) {
+    if (dir->is_directory(sitePath(dirname).c_str())) {
         response.error_message = "Site Name Already Exists";
     } else {
-        response.hostname = hn.make_hostname(request.getSitename());
+        response.hostname = dirname;
+        makeSiteFolder();
     }
 
+}
+
+string SiteController::sitePath(string folder) {
+    string fullpath = conf.farmpath + "/" + folder;
+    return fullpath;
+}
+
+void SiteController::makeSiteFolder() {
+    dir->mkdir(sitePath(response.hostname).c_str(), 0755);
 }

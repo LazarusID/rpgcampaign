@@ -22,6 +22,7 @@ public:
     virtual bool is_directory(const char *) = 0;
 
     virtual void link(const char*, const char*) = 0;
+    virtual int mkdir(const char *pathname, mode_t mode) = 0;
 };
 
 
@@ -39,9 +40,9 @@ public:
     virtual struct dirent* readdir();
     virtual bool is_regular_file(const char *relativepath);
     virtual bool is_directory(const char *relativepath);
-    virtual void link(const char *src, const char *dst);
     virtual bool is_hidden_file(const char *relativepath);
-
+    virtual void link(const char *src, const char *dst);
+    virtual int mkdir(const char *pathname, mode_t mode);
 };
 
 

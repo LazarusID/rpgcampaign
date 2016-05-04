@@ -65,3 +65,8 @@ string Directory::make_fullpath(const char *relativepath) {
 void Directory::link(const char *src, const char *dst) {
     ::link(src, dst);
 }
+
+int Directory::mkdir(const char *pathname, mode_t mode)
+{
+    return ::mkdir(pathname, mode);
+}

@@ -13,4 +13,5 @@ public:
     MOCK_METHOD1(is_directory, bool(const char*));
     MOCK_METHOD1(is_hidden_file, bool(const char*));
     MOCK_METHOD2(link, void(const char*, const char*));
+    MOCK_METHOD2(mkdir, int(const char*, mode_t));
 };

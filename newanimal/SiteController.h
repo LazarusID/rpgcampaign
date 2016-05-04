@@ -18,6 +18,8 @@ private:
     SystemInterface *sys;
     DirectoryInterface *dir;
 
+    string sitePath(string folder);
+
 public:
 
     Config conf;
@@ -34,6 +36,8 @@ public:
     void generateResponse();
 
     // Create site folder
+    void makeSiteFolder();
+
     // Unzip template
     // Template Farm
     // CSS Farm
