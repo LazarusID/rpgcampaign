@@ -5,6 +5,7 @@ REST api to create new wiki farm animals for dokuwiki
 ## Building
 
   * ``git submodule init``
+    ``git submodule update``
 
     Pulls down the submodules (googletest and jsoncpp).
 
