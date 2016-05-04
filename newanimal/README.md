@@ -12,11 +12,11 @@ REST api to create new wiki farm animals for dokuwiki
 
   * Change to that folder.
 
-  * cmake ../newanimal
+  * ``cmake ../newanimal``
 
   * make
 
-    * To build just the unit tests, make newanimal-test
+    * To build just the unit tests, ``make newanimal-test``
 
-    * To run the full tests, make test, which will build and run the unit
+    * To run the full tests, ``make test``, which will build and run the unit
       test suite.
