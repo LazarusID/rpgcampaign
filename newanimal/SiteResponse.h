@@ -17,6 +17,7 @@ public:
     SiteResponse(const SiteResponse&);
 
     string hostname;
+    string fqdn;
     string error_message;
 };
 

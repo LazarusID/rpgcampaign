@@ -42,7 +42,7 @@ TEST_F(testSiteController, generateResponse_withDuplicateSitename_generatesError
 
 TEST_F(testSiteController, generateResponse_withSitename_createsSiteFolder)
 {
-	const char* expected_dir = "/var/farm/back-in-black";
+	const char* expected_dir = "/var/farm/back-in-black.rpg-campaign.us";
 	mode_t expected_mode = 0755;
 	EXPECT_CALL(mockDir, mkdir(StrEq(expected_dir), expected_mode)).WillOnce(Return(0));
     controller->generateResponse();

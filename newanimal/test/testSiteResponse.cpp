@@ -9,7 +9,8 @@
 #include "../SiteResponse.h"
 using namespace ::testing;
 
-static const char *const HOSTNAME = "bobs-burger-shack.rpg-campaign.net";
+static const char *const HOSTNAME = "bobs-burger-shack";
+static const char *const FQDN = "bobs-burger-shack.rpg-campaign.net";
 static const char *const ERROR_MESSAGE = "My Error";
 
 class testSiteResponse : public testing::Test {
@@ -19,27 +20,31 @@ public:
     virtual void SetUp() {
         response = make_unique<SiteResponse>();
         response->hostname = HOSTNAME;
+        response->fqdn = FQDN;
     }
 };
 
-TEST_F(testSiteResponse, constructor_byDefault_setsBlankErrorAndHostname)
+TEST_F(testSiteResponse, constructor_byDefault_setsBlankErrorHostnameAndFQDN)
 {
     response = make_unique<SiteResponse>();
 
     ASSERT_THAT(response->error_message, StrEq(""));
     ASSERT_THAT(response->hostname, StrEq(""));
+    ASSERT_THAT(response->fqdn, StrEq(""));
 }
 
-TEST_F(testSiteResponse, copyConstructor_copiesBothFields)
+TEST_F(testSiteResponse, copyConstructor_copiesAllFields)
 {
     SiteResponse src;
     src.error_message = ERROR_MESSAGE;
     src.hostname = HOSTNAME;
+    src.fqdn = FQDN;
 
     response = make_unique<SiteResponse>(src);
 
     ASSERT_THAT(response->error_message, StrEq(ERROR_MESSAGE));
     ASSERT_THAT(response->hostname, StrEq(HOSTNAME));
+    ASSERT_THAT(response->fqdn, StrEq(FQDN));
 }
 
 TEST_F(testSiteResponse, outputOperator_withNoError_createsHostnameNodeButNotErrorNode)
@@ -49,6 +54,7 @@ TEST_F(testSiteResponse, outputOperator_withNoError_createsHostnameNodeButNotErr
     out << *response;
 
     ASSERT_THAT(out["hostname"].asString(), StrEq(HOSTNAME));
+    ASSERT_THAT(out["fqdn"].asString(), StrEq(FQDN));
     ASSERT_FALSE(out.isMember("error"));
 }
 
@@ -60,5 +66,6 @@ TEST_F(testSiteResponse, outputOperator_withError_createsHostnameAndErrorNode)
     out << *response;
 
     ASSERT_THAT(out["hostname"].asString(), StrEq(HOSTNAME));
+    ASSERT_THAT(out["fqdn"].asString(), StrEq(FQDN));
     ASSERT_THAT(out["error"].asString(), StrEq(ERROR_MESSAGE));
 }

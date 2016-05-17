@@ -39,7 +39,7 @@ void SiteController::generateResponse() {
 }
 
 string SiteController::sitePath(string folder) {
-    string fullpath = conf.farmpath + "/" + folder;
+    string fullpath = conf.farmpath + "/" + folder + "." + conf.domain;
     return fullpath;
 }
 
