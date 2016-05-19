@@ -31,6 +31,7 @@ TEST_F(testSiteController, generateResponse_withSitename_generatesCleanSiteName)
 {
     controller->generateResponse();
     ASSERT_THAT(controller->response.hostname, StrEq("back-in-black"));
+    ASSERT_THAT(controller->response.fqdn, StrEq("back-in-black.rpg-campaign.us"));
 }
 
 TEST_F(testSiteController, generateResponse_withDuplicateSitename_generatesError)

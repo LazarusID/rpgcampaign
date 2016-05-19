@@ -18,7 +18,7 @@ private:
     SystemInterface *sys;
     DirectoryInterface *dir;
 
-    string sitePath(string folder);
+    string sitePath(string fqdn);
 
 public:
 

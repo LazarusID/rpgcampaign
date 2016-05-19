@@ -27,22 +27,24 @@ void SiteController::loadConfig() {
 void SiteController::generateResponse() {
     Hostname hn;
 
-    string dirname = hn.make_hostname(request.getSitename());
+    string hostname = hn.make_hostname(request.getSitename());
+    string fqdn = hostname + "." + conf.domain;
 
-    if (dir->is_directory(sitePath(dirname).c_str())) {
+    if (dir->is_directory(sitePath(fqdn).c_str())) {
         response.error_message = "Site Name Already Exists";
     } else {
-        response.hostname = dirname;
+        response.hostname = hostname;
+        response.fqdn = fqdn;
         makeSiteFolder();
     }
 
 }
 
-string SiteController::sitePath(string folder) {
-    string fullpath = conf.farmpath + "/" + folder + "." + conf.domain;
+string SiteController::sitePath(string fqdn) {
+    string fullpath = conf.farmpath + "/" + fqdn;
     return fullpath;
 }
 
 void SiteController::makeSiteFolder() {
-    dir->mkdir(sitePath(response.hostname).c_str(), 0755);
+    dir->mkdir(sitePath(response.fqdn).c_str(), 0755);
 }
