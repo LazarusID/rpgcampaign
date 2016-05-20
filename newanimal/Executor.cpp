@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstring>
 #include "Executor.h"
+#include <cstdlib>
 
 Executor::Executor() {
 	sys = new System();
@@ -26,7 +27,7 @@ int Executor::run(map<string, string>& parameters)
     string arg;
     for(int i=0; i < command.size(); ++i) {
         arg = command[i];
-        if (parameters.find(arg != parameters.end())) {
+        if (parameters.find(arg) != parameters.end()) {
             cli[i] = strdup(parameters[arg].c_str());
         } else {
             cli[i] = strdup(arg.c_str());

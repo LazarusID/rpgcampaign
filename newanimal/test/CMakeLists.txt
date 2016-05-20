@@ -8,20 +8,21 @@ SET(TEST_SRC
         testLinkFarm.cpp
 	testSiteRequest.cpp
 	testSiteResponse.cpp
-		testSiteController.cpp MockDirectory.h)
+		testSiteController.cpp MockDirectory.h testExecutor.cpp)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h
-	../Link.cpp ../Link.h
-	../FileFolder.cpp ../FileFolder.h
-	../Directory.cpp ../Directory.h
+	    ../Link.cpp ../Link.h
+	    ../FileFolder.cpp ../FileFolder.h
+	    ../Directory.cpp ../Directory.h
         ../SiteRequest.cpp ../SiteRequest.h
-	../Hostname.cpp ../Hostname.h 
-	../SiteController.cpp ../SiteController.h 
-	../SiteResponse.cpp ../SiteResponse.h 
-	../System.cpp ../System.h
-	../Config.cpp ../Config.h
-	MockSystem.h
+	    ../Hostname.cpp ../Hostname.h
+	    ../SiteController.cpp ../SiteController.h
+	    ../SiteResponse.cpp ../SiteResponse.h
+	    ../System.cpp ../System.h
+	    ../Config.cpp ../Config.h
+		../Executor.cpp ../Executor.h
+	    MockSystem.h
 )
 
 SET(TEST_NAME ${PROJECT_NAME}-test)
