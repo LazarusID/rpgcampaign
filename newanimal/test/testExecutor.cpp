@@ -26,11 +26,13 @@ TEST_F(testExecutor, run_withSingleArgCli_execvpCalledWithSingleArg)
 {
     vector<string> cli;
     cli.push_back("ls");
+    map<string, string> params;
 
     EXPECT_CALL(sys, fork())
                 .WillOnce(Return(0));
     EXPECT_CALL(sys, execvp(StrEq("ls"), _));
     exe->setCli(cli);
+    exe->run(params);
 
 }
 
