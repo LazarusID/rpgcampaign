@@ -45,3 +45,11 @@ TEST_F(testConfig, instream_withMissingDomain_leavesDomainEmpty)
     ASSERT_THAT(conf.domain, StrEq(""));
     ASSERT_THAT(conf.farmpath, StrEq("/var/farm"));
 }
+
+TEST_F(testConfig, instream_withProvisionScript_populatesProvisionScript)
+{
+    istringstream in("{ \"provisionScript\": [\"program\", \"arg1\", \"arg2\" ] }");
+    in >> conf;
+
+    ASSERT_THAT(conf.provisionScript, ElementsAre("program", "arg1", "arg2"));
+}

@@ -13,6 +13,15 @@ istream& operator>>(istream& in, Config& conf)
 
         conf.farmpath = doc["farmpath"].asString();
         conf.domain = doc["domain"].asString();
+
+        Json::Value provisionScript = doc["provisionScript"];
+        if (provisionScript.isArray()) {
+            conf.provisionScript.clear();
+            for(int i=0; i < provisionScript.size(); ++i)
+            {
+                conf.provisionScript.push_back(provisionScript[i].asString());
+            }
+        }
     }
 
     return in;

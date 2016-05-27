@@ -16,6 +16,8 @@ public:
     string domain;
     string farmpath;
 
+    vector<string> provisionScript;
+
 };
 
 istream& operator>>(istream& in, Config& conf);
