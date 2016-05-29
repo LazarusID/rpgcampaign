@@ -8,7 +8,7 @@ SET(TEST_SRC
         testLinkFarm.cpp
 	testSiteRequest.cpp
 	testSiteResponse.cpp
-		testSiteController.cpp MockDirectory.h testExecutor.cpp)
+		testSiteController.cpp MockDirectory.h testExecutor.cpp MockExecutor.h)
 
 SET(UNIT_UNDER_TEST_SRC
         ../LinkFarm.cpp ../LinkFarm.h

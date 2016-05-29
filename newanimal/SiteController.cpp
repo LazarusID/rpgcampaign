@@ -11,11 +11,13 @@ using namespace std;
 SiteController::SiteController() {
     sys = new System;
     dir = new Directory;
+    exe = new Executor;
 }
 
-SiteController::SiteController(SystemInterface *injected_system, DirectoryInterface *injected_directory) {
+SiteController::SiteController(SystemInterface *injected_system, DirectoryInterface *injected_directory, ExecutorInterface *injected_executor) {
     sys = injected_system;
     dir = injected_directory;
+    exe = injected_executor;
 }
 
 void SiteController::loadConfig() {
@@ -35,9 +37,20 @@ void SiteController::generateResponse() {
     } else {
         response.hostname = hostname;
         response.fqdn = fqdn;
-        makeSiteFolder();
+        if (createSite() != 0) {
+            response.error_message = "Unable to Provision Site";
+        }
     }
 
+}
+
+int SiteController::createSite() {
+    makeSiteFolder();
+    exe->setCli(conf.provisionScript);
+    map<string, string> parameters;
+    parameters["@SITENAME"] = response.fqdn;
+    parameters["@USERNAME"] = request.getUsername();
+    return exe->run(parameters);
 }
 
 string SiteController::sitePath(string fqdn) {

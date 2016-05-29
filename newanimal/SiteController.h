@@ -12,13 +12,16 @@
 #include "Directory.h"
 #include "Directory.h"
 #include "System.h"
+#include "Executor.h"
 
 class SiteController {
 private:
     SystemInterface *sys;
     DirectoryInterface *dir;
+    ExecutorInterface *exe;
 
     string sitePath(string fqdn);
+    int createSite();
 
 public:
 
@@ -27,7 +30,8 @@ public:
     SiteRequest request;
 
     SiteController();
-    SiteController(SystemInterface* injected_system, DirectoryInterface* injected_directory);
+    SiteController(SystemInterface* injected_system, DirectoryInterface* injected_directory,
+                   ExecutorInterface* injected_executor);
 
     // Load config
     void loadConfig();
@@ -38,11 +42,6 @@ public:
     // Create site folder
     void makeSiteFolder();
 
-    // Unzip template
-    // Template Farm
-    // CSS Farm
-    // ownership and permissions
-    // user setup
 };
 
 
